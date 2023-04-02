@@ -1,0 +1,19 @@
+/* Name: Danindu Marasinghe
+   Course: CIS*2750
+   Due Date: 2023-04-04 */
+
+.bg-light {
+   background-color: #93ff85 !important;
+}
+.title {
+   margin-top: 30px;
+}
+button{
+   background-color: #93ff85 !important;
+   color: #000 !important;
+   border: 0px !important;
+}
+button:hover {
+   background-color: #19de00 !important;
+   color: #fff !important;
+}
