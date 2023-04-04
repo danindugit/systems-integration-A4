@@ -29,31 +29,59 @@
                   <li class="nav-item">
                      <a class="nav-link" href="./addElement.html">Add Element</a>
                   </li>
-                  <li class="nav-item active">
+                  <li class="nav-item">
                      <a class="nav-link" href="./uploadSDF.html">Upload sdf <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="./selectMolecule.html">Select Molecule</a>
+                  <li class="nav-item active">
+                     <a class="nav-link" href="./selectMolecule.html">Select Molecule <span class="sr-only">(current)</span></a>
                   </li>
                </ul>
             </div>
          </nav>
          
          <!-- Title -->
-         <h1 class="display-2 text-center title">Upload sdf</h1>    
+         <h1 class="display-2 text-center title">Select a Molecule</h1>   
          <br>
-         <br>
-         <div class="row">
-            <div class="col d-flex justify-content-center">
-               <form>
-                  <div class="form-group">
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                  </div>
-                  <input class="form-control" type="text" placeholder="Molecule Name">
-                  <button type="button" class="btn btn-primary btn-display">Insert Molecule</button>
-               </form>
+         <p class="text-center lead">Please select an option from the navigation menu above.</p>
+         <br>   
+         <div class="row content-row">
+            <div class="text-center col-md-6">
+               <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First</th>
+                      <th scope="col">Last</th>
+                      <th scope="col">Handle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td colspan="2">Larry the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
-         </div> 
+            <div class="col-md-6 info-col">
+               <p>Please enter the name of the molecule you'd like to display.</p>
+               <input class="form-control" type="text" placeholder="Molecule Name">
+               <button type="button" class="btn btn-primary btn-display">Display Molecule</button>
+            </div>
+         </div>   
       
          <!-- Bootstrap JavaScript -->
          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

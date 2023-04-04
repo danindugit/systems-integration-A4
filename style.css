@@ -2,6 +2,10 @@
    Course: CIS*2750
    Due Date: 2023-04-04 */
 
+.content-row{
+   margin-right: 25px;
+   margin-left: 25px;
+}
 .bg-light {
    background-color: #adfff8 !important;
 }
@@ -19,6 +23,9 @@ button:hover {
 }
 .btn-select {
    min-width: fit-content;
+}
+.btn-display {
+   margin-top: 10px;
 }
 .info-col {
    border-left: 1px solid #000;
