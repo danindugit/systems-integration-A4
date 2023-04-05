@@ -13,33 +13,43 @@ class MyHandler( BaseHTTPRequestHandler ):
     def do_GET(self):
 
         # used to GET a file from the list ov public_files, above
-        if self.path == "/":   # make sure it's a valid file
+         if self.path == "/":   # make sure it's a valid file
             self.send_response( 200 );  # OK
-            # Set the content type based on the file extension
-            if self.path.endswith('.html'):
-               content_type = 'text/html'
-            elif self.path.endswith('.css'):
-               content_type = 'text/css'
-            elif self.path.endswith('.js'):
-               content_type = 'text/javascript'
-            self.send_header( "Content-type", content_type );
-            # self.send_header( "Content-type", "text/css" );
+            self.send_header( "Content-type", "text/html" );
 
-            fp = open( self.path[1:] ); 
-            # [1:] to remove leading / so that file is found in current dir
+            self.write_file("index.html");
 
-            # load the specified file
-            page = fp.read();
-            fp.close();
+         elif self.path == "/style.css":
+            self.send_response(200); # ok
+            self.send_header( "Content-type", "text/css" );   
 
-            # create and send headers
-            self.send_header( "Content-length", len(page) );
-            self.end_headers();
+            self.write_file( "style.css" );
 
-            # send the contents
-            self.wfile.write( bytes( page, "utf-8" ) );
+         elif self.path == "/addElement.html":
+            self.send_response(200); # ok
+            self.send_header( "Content-type", "text/html" );   
 
-        else:
+            self.write_file( "addElement.html" );
+
+         elif self.path == "/removeElement.html":
+            self.send_response(200); # ok
+            self.send_header( "Content-type", "text/html" );   
+
+            self.write_file( "removeElement.html" );
+         
+         elif self.path == "/selectMolecule.html":
+            self.send_response(200); # ok
+            self.send_header( "Content-type", "text/html" );   
+
+            self.write_file( "selectMolecule.html" );
+         
+         elif self.path == "/uploadSDF.html":
+            self.send_response(200); # ok
+            self.send_header( "Content-type", "text/html" );   
+
+            self.write_file( "uploadSDF.html" );
+
+         else:
             # if the requested URL is not one of the public_files
             self.send_response( 404 );
             self.end_headers();
