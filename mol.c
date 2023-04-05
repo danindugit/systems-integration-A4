@@ -412,3 +412,11 @@ void mol_xform(molecule *molecule, xform_matrix matrix)
         compute_coords(&(molecule->bonds[i]));
     }
 }
+
+rotations *spin( molecule *mol ){
+   return NULL;
+}
+
+void rotationsfree( rotations *rotations ){
+   
+}
