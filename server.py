@@ -17,9 +17,11 @@ class MyHandler( BaseHTTPRequestHandler ):
             self.send_response( 200 );  # OK
             # Set the content type based on the file extension
             if self.path.endswith('.html'):
-                  content_type = 'text/html'
+               content_type = 'text/html'
             elif self.path.endswith('.css'):
-                  content_type = 'text/css'
+               content_type = 'text/css'
+            elif self.path.endswith('.js'):
+               content_type = 'text/javascript'
             self.send_header( "Content-type", content_type );
             # self.send_header( "Content-type", "text/css" );
 

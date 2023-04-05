@@ -5,11 +5,9 @@ $(document).ready(
   function()
   {
       // click handler for uploadSDF button
-      $("#btnInsMol").click(
-         function()
-         {
-            
-         }
-      )
+      $('#btnInsMol').click(function() {
+         var fileValue = $('#fileSdf').val();
+         console.log(fileValue);
+       });
   }
 );
