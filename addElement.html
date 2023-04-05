@@ -17,7 +17,7 @@
         <body>
          <!-- navbar -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Molecule Viewer</a>
+            <a class="navbar-brand" href="./index.html">Molecule Viewer</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,6 +28,9 @@
                   </li>
                   <li class="nav-item active">
                      <a class="nav-link" href="./addElement.html">Add Element <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="./removeElement.html">Remove Element</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="./uploadSDF.html">Upload sdf</a>
@@ -41,6 +44,43 @@
 
          <!-- Title -->
          <h1 class="display-2 text-center title">Add Element</h1>
+
+         <div class="row">
+            <div class="col d-flex justify-content-center">
+               <form>
+                  <div class="form-group">
+                    <label for="element-number">Element Number:</label>
+                    <input type="text" class="form-control" id="element-number" name="element-number">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-code">Element Code:</label>
+                    <input type="text" class="form-control" id="element-code" name="element-code">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-name">Element Name:</label>
+                    <input type="text" class="form-control" id="element-name" name="element-name">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-color-1">Element Colour 1:</label>
+                    <input type="text" class="form-control" id="element-color-1" name="element-color-1">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-color-2">Element Colour 2:</label>
+                    <input type="text" class="form-control" id="element-color-2" name="element-color-2">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-color-3">Element Colour 3:</label>
+                    <input type="text" class="form-control" id="element-color-3" name="element-color-3">
+                  </div>
+                  <div class="form-group">
+                    <label for="element-radius">Element Radius:</label>
+                    <input type="text" class="form-control" id="element-radius" name="element-radius">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Add Element</button>
+                </form>
+                
+            </div>
+         </div> 
          
       
          <!-- Bootstrap JavaScript -->
