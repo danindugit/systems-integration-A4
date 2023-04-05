@@ -12,6 +12,8 @@ public_files = [ '/index.html', '/style.css', '/script.js' ];
 class MyHandler( BaseHTTPRequestHandler ):
     def do_GET(self):
 
+        print(self.path);
+
         # used to GET a file from the list ov public_files, above
         if self.path in public_files:   # make sure it's a valid file
             self.send_response( 200 );  # OK
