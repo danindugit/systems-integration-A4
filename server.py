@@ -15,7 +15,12 @@ class MyHandler( BaseHTTPRequestHandler ):
         # used to GET a file from the list ov public_files, above
         if self.path in public_files:   # make sure it's a valid file
             self.send_response( 200 );  # OK
-            self.send_header( "Content-type", "text/html" );
+            # Set the content type based on the file extension
+            if self.path.endswith('.html'):
+                  content_type = 'text/html'
+            elif self.path.endswith('.css'):
+                  content_type = 'text/css'
+            self.send_header( "Content-type", content_type );
             # self.send_header( "Content-type", "text/css" );
 
             fp = open( self.path[1:] ); 
