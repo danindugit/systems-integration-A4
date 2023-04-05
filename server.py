@@ -16,7 +16,7 @@ class MyHandler( BaseHTTPRequestHandler ):
         if self.path in public_files:   # make sure it's a valid file
             self.send_response( 200 );  # OK
             self.send_header( "Content-type", "text/html" );
-            self.send_header( "Content-type", "text/css" );
+            # self.send_header( "Content-type", "text/css" );
 
             fp = open( self.path[1:] ); 
             # [1:] to remove leading / so that file is found in current dir
