@@ -13,7 +13,7 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
 
       # used to GET a file from the list ov public_files, above
-      if self.path == "/" or self.path == "index.html":   # make sure it's a valid file
+      if self.path == "/" or self.path == "/index.html":   # make sure it's a valid file
          self.send_response( 200 );  # OK
          self.send_header( "Content-type", "text/html" );
 
