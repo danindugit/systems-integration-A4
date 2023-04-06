@@ -23,11 +23,11 @@ $(document).ready(
             processData: false,
             success: function(response) {
               // Handle success here
-              alert("Success");
+              alert("Molecule Successfully Added.");
             },
             error: function() {
               // Handle error here
-              alert("Error");
+              alert("Error. Please Enter a valid sdf file and molecule name.");
             }
           });
        });

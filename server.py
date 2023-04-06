@@ -79,9 +79,9 @@ class MyHandler( BaseHTTPRequestHandler ):
          fileInputValue = form['fileInfo'];
          formMolNameValue = form.getvalue("mol");
 
-         print(fileInputValue.filename);
-         print(fileInputValue);
-         print(formMolNameValue);
+         # print(fileInputValue.filename);
+         # print(fileInputValue);
+         # print(formMolNameValue);
 
          fptr = fileInputValue.file.read();
 
@@ -94,11 +94,11 @@ class MyHandler( BaseHTTPRequestHandler ):
          db.add_molecule( formMolNameValue, fptr );
 
          # print("ok2.");
-         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
 
-         # self.send_response( 200 ); # OK
+         self.send_response( 200 ); # OK
          # self.send_header( "Content-type", "text/plain" );
          # self.send_header( "Content-length", len(message) );
          # self.end_headers();
