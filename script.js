@@ -7,20 +7,25 @@ $(document).ready(
       // click handler for uploadSDF button
       $('#btnInsMol').click(function() {      
          // post request
+         const fileName = $('#fileSdf')[0].files[0]
+         const molName= $('#formMolName').val()
+
+         const form = new FormData()
+
+         form.append("fileInfo", fileName)
+         form.append("mol", molName)
+
          $.ajax({
             url: 'uploadSDF',
             type: 'POST',
-            data: {
-               fileName: $('#fileSdf')[0].files[0],
-               molName: $('#formMolName').val()
-            },
+            data: form,
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function() {
               // Handle success here
               alert("Success");
             },
-            error: function(xhr, status, error) {
+            error: function() {
               // Handle error here
               alert("Error");
             }
