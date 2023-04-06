@@ -28,29 +28,11 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          self.write_file( "style.css" );
 
-      elif self.path == "/addElement.html":
+      elif self.path == "/script.js":
          self.send_response(200); # ok
-         self.send_header( "Content-type", "text/html" );   
+         self.send_header( "Content-type", "text/javascript" );   
 
-         self.write_file( "addElement.html" );
-
-      elif self.path == "/removeElement.html":
-         self.send_response(200); # ok
-         self.send_header( "Content-type", "text/html" );   
-
-         self.write_file( "removeElement.html" );
-      
-      elif self.path == "/selectMolecule.html":
-         self.send_response(200); # ok
-         self.send_header( "Content-type", "text/html" );   
-
-         self.write_file( "selectMolecule.html" );
-      
-      elif self.path == "/uploadSDF.html":
-         self.send_response(200); # ok
-         self.send_header( "Content-type", "text/html" );   
-
-         self.write_file( "uploadSDF.html" );
+         self.write_file( "script.js" );
 
       else:
          # if the requested URL is not one of the public_files
