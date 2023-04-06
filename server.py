@@ -94,7 +94,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          db.add_molecule( formMolNameValue, fptr );
 
          # print("ok2.");
-         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
 
