@@ -15,8 +15,18 @@ public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html',
 class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
 
-      # used to GET a file from the list ov public_files, above
-      if self.path == "/" or self.path.endswith(".html"):   # make sure it's a valid file
+      if self.path == "/selectMolecule.html":
+         self.send_response(200);
+         self.send_header( "Content-type", "text/html" );
+      
+         # save file to a string
+         with open('selectMolecule.html', 'r') as f:
+            html_string = f.read();
+      
+         print(html_string);
+
+
+      elif self.path == "/" or self.path.endswith(".html"):   # make sure it's a valid file
          self.send_response( 200 );  # OK
          self.send_header( "Content-type", "text/html" );
 
