@@ -64,14 +64,18 @@ class MyHandler( BaseHTTPRequestHandler ):
                 environ={'REQUEST_METHOD': 'POST'}
             );
          fileInputValue = form['fileSdf'];
-         formMolNameValue = form['formMolName'].value;
+         formMolNameValue = form.getvalue("formMolName");
 
-         fp = fopen(fileInputValue.filename);
+         print(fileInputValue.filename);
+         print(fileInputValue);
+         print(formMolNameValue);
 
-         db.add_molecule( formMolNameValue, fp );
+         # fp = fopen(fileInputValue.filename);
+
+         # db.add_molecule( formMolNameValue, fp );
 
          # print("ok2.");
-         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
 
