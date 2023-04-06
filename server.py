@@ -6,7 +6,7 @@ import urllib;  # code to parse for data
 import molsql;
 
 import cgi;
-import os;
+import io;
 
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
@@ -83,9 +83,15 @@ class MyHandler( BaseHTTPRequestHandler ):
          print(fileInputValue);
          print(formMolNameValue);
 
-         fp = os.fopen(fileInputValue.filename);
+         fptr = fileInputValue.file.read();
 
-         db.add_molecule( formMolNameValue, fp );
+         # convert to text file
+         bytesIO = io.BytesIikO(fptr);
+         fptr = io.TextIOWrapper(bytesIO);
+
+         # fp = os.fopen(fileInputValue.filename);
+
+         db.add_molecule( formMolNameValue, fptr );
 
          # print("ok2.");
          print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
