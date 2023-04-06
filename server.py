@@ -48,7 +48,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          # code to handle sdf_upload
          print("makes it to the uploadSDF python code");
 
-         molecule = MolDisplay.Molecule();
+         molecule = molsql.MolDisplay.Molecule();
 
          molsql.add_molecule( self.rfile );
 
