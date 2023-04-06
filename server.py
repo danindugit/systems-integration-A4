@@ -23,21 +23,38 @@ class MyHandler( BaseHTTPRequestHandler ):
          with open('selectMolecule.html', 'r') as f:
             html_string = f.read();
          
-         # Find the line number of the <tbody> tag
-         tbody_line_number = None;
+         # # Find the line number of the <tbody> tag
+         # tbody_line_number = None;
+         # for i, line in enumerate(html_string.splitlines()):
+         #    if '<tbody>' in line:
+         #       tbody_line_number = i;
+         #       break;
+
+         # # Append a new row right after the <tbody> tag
+         # if tbody_line_number is not None:
+         #    new_row = '';
+         #    lines = html_string.splitlines();
+         #    lines.insert(tbody_line_number+1, new_row);
+         #    html_string = '\n'.join(lines);
+
+         # Find the line number of the </tbody> tag
+         tbody_line_number = None
          for i, line in enumerate(html_string.splitlines()):
-            if '<tbody>' in line:
-               tbody_line_number = i;
-               break;
+            if '</tbody>' in line:
+               tbody_line_number = i
+               break
 
-         # Append a new row right after the <tbody> tag
+         # Append a new row right before the </tbody> tag
          if tbody_line_number is not None:
-            new_row = '<tr><td>1</td><td>Meth</td></tr>';
-            lines = html_string.splitlines();
-            lines.insert(tbody_line_number+1, new_row);
-            html_string = '\n'.join(lines);
+            new_row = '<tr><td>1</td><td>Meth</td></tr>'
+            lines = html_string.splitlines()
+            lines.insert(tbody_line_number, new_row)
+            html_string = '\n'.join(lines)
 
-         print(html_string);
+         # print(html_string);
+
+         with open('selectMolecule.html.html', 'w') as f:
+            f.write(html_string)
       
          self.write_file( "selectMolecule.html" );
 
