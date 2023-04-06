@@ -53,7 +53,7 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # print(html_string);
 
-         with open('selectMolecule.html.html', 'w') as f:
+         with open('selectMolecule.html', 'w') as f:
             f.write(html_string)
       
          self.write_file( "selectMolecule.html" );
