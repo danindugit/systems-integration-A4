@@ -56,6 +56,8 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          db.add_molecule( form_data["molName"], form_data["fileName"] );
 
+         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+
          # message = "sdf file uploaded to database";
 
          # self.send_response( 200 ); # OK
