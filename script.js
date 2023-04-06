@@ -21,7 +21,7 @@ $(document).ready(
             data: form,
             contentType: false,
             processData: false,
-            success: function(response) {
+            success: function() {
               // Handle success here
               alert("Molecule Successfully Added.");
             },
