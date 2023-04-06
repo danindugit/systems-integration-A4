@@ -13,11 +13,11 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
 
       # used to GET a file from the list ov public_files, above
-      if self.path == "/" or self.path == "/index.html":   # make sure it's a valid file
+      if self.path == "/" or self.path.endswith(".html"):   # make sure it's a valid file
          self.send_response( 200 );  # OK
          self.send_header( "Content-type", "text/html" );
 
-         self.write_file("index.html");
+         self.write_file(self.path[1:]);
 
       elif self.path == "/style.css":
          self.send_response(200); # ok
@@ -59,23 +59,22 @@ class MyHandler( BaseHTTPRequestHandler ):
 
    def do_POST(self):
 
-      if self.path == "/sdf_upload.html":
+      if self.path == "/uploadSDF":
          # code to handle sdf_upload
+         print("makes it to the uploadSDF python code");
 
          molecule = MolDisplay.Molecule();
-         for i in range(0,4):    # skip 4 lines
-               string = next(self.rfile);
 
          molsql.add_molecule( self.rfile );
 
-         message = "sdf file uploaded to database";
+         # message = "sdf file uploaded to database";
 
-         self.send_response( 200 ); # OK
-         self.send_header( "Content-type", "text/plain" );
-         self.send_header( "Content-length", len(message) );
-         self.end_headers();
+         # self.send_response( 200 ); # OK
+         # self.send_header( "Content-type", "text/plain" );
+         # self.send_header( "Content-length", len(message) );
+         # self.end_headers();
 
-         self.wfile.write( bytes( message, "utf-8" ) );
+         # self.wfile.write( bytes( message, "utf-8" ) );
 
       elif self.path == "/form_handler.html":
 

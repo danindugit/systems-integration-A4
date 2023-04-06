@@ -6,8 +6,32 @@ $(document).ready(
   {
       // click handler for uploadSDF button
       $('#btnInsMol').click(function() {
-         var fileValue = $('#fileSdf').val();
-         console.log(fileValue);
+         var fileInputValue = $('#fileSdf').val();
+         var formMolNameValue = $('#formMolName').val();
+       
+         console.log('fileInputValue:', fileInputValue);
+         console.log('formMolNameValue:', formMolNameValue);
+
+
+         var data = [fileInputValue, formMolNameValue];
+       
+         // post request
+         $.ajax({
+            url: 'uploadSDF',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: false,
+            processData: false,
+            success: function(response) {
+              // Handle success here
+              alert("Success");
+            },
+            error: function(xhr, status, error) {
+              // Handle error here
+              alert("Error");
+            }
+          });
        });
+       
   }
 );
