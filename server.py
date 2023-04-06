@@ -86,7 +86,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          fptr = fileInputValue.file.read();
 
          # convert to text file
-         bytesIO = io.BytesIikO(fptr);
+         bytesIO = io.BytesIO(fptr);
          fptr = io.TextIOWrapper(bytesIO);
 
          # fp = os.fopen(fileInputValue.filename);
