@@ -47,11 +47,12 @@ class MyHandler( BaseHTTPRequestHandler ):
 
       if self.path == "/uploadSDF":
          # code to handle uploadSDF
-
          molecule = MolDisplay.Molecule();
          db = molsql.Database();
 
-         db.add_molecule( self.rfile );
+         form_data = json.loads(self.rfile.read().decode("utf-8"));
+
+         db.add_molecule( form_data["molName"], form_data["fileName"] );
 
          # message = "sdf file uploaded to database";
 

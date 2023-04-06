@@ -5,21 +5,15 @@ $(document).ready(
   function()
   {
       // click handler for uploadSDF button
-      $('#btnInsMol').click(function() {
-         var fileInputValue = $('#fileSdf').val();
-         var formMolNameValue = $('#formMolName').val();
-       
-         console.log('fileInputValue:', fileInputValue);
-         console.log('formMolNameValue:', formMolNameValue);
-
-
-         var data = [fileInputValue, formMolNameValue];
-       
+      $('#btnInsMol').click(function() {      
          // post request
          $.ajax({
             url: 'uploadSDF',
             type: 'POST',
-            data: JSON.stringify(data),
+            data: {
+               fileName: $('#fileSdf').val(),
+               molName: $('#formMolName').val()
+            },
             contentType: false,
             processData: false,
             success: function(response) {
