@@ -17,7 +17,10 @@ class MyHandler( BaseHTTPRequestHandler ):
          self.send_response( 200 );  # OK
          self.send_header( "Content-type", "text/html" );
 
-         self.write_file(self.path[1:]);
+         if self.path == "/":
+            self.write_file("index.html");
+         else:
+            self.write_file(self.path[1:]);
 
       elif self.path == "/style.css":
          self.send_response(200); # ok
