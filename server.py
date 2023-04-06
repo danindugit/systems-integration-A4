@@ -50,12 +50,13 @@ class MyHandler( BaseHTTPRequestHandler ):
       if self.path == "/uploadSDF":
          # code to handle uploadSDF
          molecule = MolDisplay.Molecule();
-         db = molsql.Database();
+         db = molsql.Database(reset=False);
 
          form_data = json.loads(self.rfile.read().decode("utf-8"));
 
          db.add_molecule( form_data["molName"], form_data["fileName"] );
 
+         print("ok.");
          print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
@@ -110,7 +111,7 @@ class MyHandler( BaseHTTPRequestHandler ):
       self.wfile.write( bytes( page, "utf-8" ) );
 
 
-db = molsql.Database(reset=False);
+db = molsql.Database(reset=True);
 db.create_tables();
 db['Elements'] = ( 1, 'H', 'Hydrogen', 'FFFFFF', '050505', '020202', 25 );
 db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
