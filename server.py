@@ -4,6 +4,7 @@ import sys;     # to get command line argument for port
 import urllib;  # code to parse for data
 
 import molsql;
+import MolDisplay;
 
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
@@ -48,7 +49,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          # code to handle sdf_upload
          print("makes it to the uploadSDF python code");
 
-         molecule = molsql.MolDisplay.Molecule();
+         molecule = MolDisplay.Molecule();
 
          molsql.add_molecule( self.rfile );
 
