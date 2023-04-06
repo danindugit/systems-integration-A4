@@ -6,6 +6,8 @@ import urllib;  # code to parse for data
 import molsql;
 import MolDisplay;
 
+import json;
+
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
 public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html', '/removeElement.html', '/uploadSDF.html', '/selectMolecule.html'];
