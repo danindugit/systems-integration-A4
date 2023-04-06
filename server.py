@@ -24,6 +24,8 @@ class MyHandler( BaseHTTPRequestHandler ):
             html_string = f.read();
       
          print(html_string);
+      
+         self.write_file( "selectMolecule.html" );
 
 
       elif self.path == "/" or self.path.endswith(".html"):   # make sure it's a valid file
