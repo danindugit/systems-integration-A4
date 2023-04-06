@@ -46,12 +46,12 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_POST(self):
 
       if self.path == "/uploadSDF":
-         # code to handle sdf_upload
-         print("makes it to the uploadSDF python code");
+         # code to handle uploadSDF
 
          molecule = MolDisplay.Molecule();
+         db = molsql.Database();
 
-         molsql.add_molecule( self.rfile );
+         db.add_molecule( self.rfile );
 
          # message = "sdf file uploaded to database";
 
