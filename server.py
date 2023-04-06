@@ -48,7 +48,20 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_POST(self):
 
       if self.path == "/uploadSDF":
+         print("makes it to uploadSDF.");
          # code to handle uploadSDF
+
+         content_length = int(self.headers['Content-Length']);
+         body = self.rfile.read(content_length);
+
+         print( repr( body.decode('utf-8') ) );
+
+         # convert POST content into a dictionary
+         postvars = urllib.parse.parse_qs( body.decode( 'utf-8' ) );
+
+         print( postvars );
+
+
          # print("ok1.");
          # db = molsql.Database(reset=False);
          # content_length = int(self.headers.get('Content-Length'));
@@ -58,17 +71,17 @@ class MyHandler( BaseHTTPRequestHandler ):
          # form_data = json.loads(post_data.decode('utf-8'));
          # print("ok1.4");
 
-         form = cgi.FieldStorage(
-                fp=self.rfile,
-                headers=self.headers,
-                environ={'REQUEST_METHOD': 'POST'}
-            );
-         fileInputValue = form['fileSdf'];
-         formMolNameValue = form.getvalue("formMolName");
+         # form = cgi.FieldStorage(
+         #        fp=self.rfile,
+         #        headers=self.headers,
+         #        environ={'REQUEST_METHOD': 'POST'}
+         #    );
+         # fileInputValue = form['fileSdf'];
+         # formMolNameValue = form.getvalue("formMolName");
 
-         print(fileInputValue.filename);
-         print(fileInputValue);
-         print(formMolNameValue);
+         # print(fileInputValue.filename);
+         # print(fileInputValue);
+         # print(formMolNameValue);
 
          # fp = fopen(fileInputValue.filename);
 
