@@ -101,7 +101,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          self.send_response( 200 ); # OK
          # self.send_header( "Content-type", "text/plain" );
          # self.send_header( "Content-length", len(message) );
-         # self.end_headers();
+         self.end_headers();
 
          # self.wfile.write( bytes( message, "utf-8" ) );
 
