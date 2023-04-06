@@ -4,9 +4,9 @@ import sys;     # to get command line argument for port
 import urllib;  # code to parse for data
 
 import molsql;
-import MolDisplay;
 
-import json;
+import cgi;
+import os;
 
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
@@ -49,18 +49,28 @@ class MyHandler( BaseHTTPRequestHandler ):
 
       if self.path == "/uploadSDF":
          # code to handle uploadSDF
-         print("ok1.");
-         db = molsql.Database(reset=False);
-         content_length = int(self.headers.get('Content-Length'));
-         print("ok1.2");
-         post_data = self.rfile.read(content_length);
-         print("ok1.3");
-         form_data = json.loads(post_data.decode('utf-8'));
-         print("ok1.4");
+         # print("ok1.");
+         # db = molsql.Database(reset=False);
+         # content_length = int(self.headers.get('Content-Length'));
+         # print("ok1.2");
+         # post_data = self.rfile.read(content_length);
+         # print("ok1.3");
+         # form_data = json.loads(post_data.decode('utf-8'));
+         # print("ok1.4");
 
-         db.add_molecule( form_data["molName"], form_data["fileName"] );
+         form = cgi.FieldStorage(
+                fp=self.rfile,
+                headers=self.headers,
+                environ={'REQUEST_METHOD': 'POST'}
+            );
+         fileInputValue = form['fileSdf'];
+         formMolNameValue = form['formMolName'].value;
 
-         print("ok2.");
+         fp = fopen(fileInputValue.filename);
+
+         db.add_molecule( formMolNameValue, fp );
+
+         # print("ok2.");
          print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";

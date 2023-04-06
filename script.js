@@ -11,7 +11,7 @@ $(document).ready(
             url: 'uploadSDF',
             type: 'POST',
             data: {
-               fileName: $('#fileSdf').val(),
+               fileName: $('#fileSdf')[0].files[0],
                molName: $('#formMolName').val()
             },
             contentType: false,
