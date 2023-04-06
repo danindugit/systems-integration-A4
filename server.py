@@ -110,5 +110,13 @@ class MyHandler( BaseHTTPRequestHandler ):
       self.wfile.write( bytes( page, "utf-8" ) );
 
 
+db = molsql.Database(reset=False);
+db.create_tables();
+db['Elements'] = ( 1, 'H', 'Hydrogen', 'FFFFFF', '050505', '020202', 25 );
+db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
+db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
+db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
+
 httpd = HTTPServer( ( 'localhost', int(sys.argv[1]) ), MyHandler );
+
 httpd.serve_forever();
