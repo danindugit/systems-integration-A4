@@ -83,12 +83,12 @@ class MyHandler( BaseHTTPRequestHandler ):
          print(fileInputValue);
          print(formMolNameValue);
 
-         # fp = fopen(fileInputValue.filename);
+         fp = os.fopen(fileInputValue.filename);
 
-         # db.add_molecule( formMolNameValue, fp );
+         db.add_molecule( formMolNameValue, fp );
 
          # print("ok2.");
-         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
 

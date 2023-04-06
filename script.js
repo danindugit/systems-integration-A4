@@ -21,7 +21,7 @@ $(document).ready(
             data: form,
             contentType: false,
             processData: false,
-            success: function() {
+            success: function(response) {
               // Handle success here
               alert("Success");
             },
