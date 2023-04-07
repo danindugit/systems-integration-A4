@@ -50,7 +50,7 @@ $(document).ready(
                // Handle success here
                console.log(svgstr);
                console.log("at least it succeeds eh.");
-               $('div.svg').html(svgstr);
+               $('div.svg').append(svgstr);
             },
             error: function() {
                // Handle error here
