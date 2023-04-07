@@ -42,15 +42,15 @@ class MyHandler( BaseHTTPRequestHandler ):
          unique_set = set()
 
          # Create an empty list to store the filtered rows
-         filtered_rows = []
+         # filtered_rows = []
 
-         # Iterate over each row in the 2D array
-         for row in rows_2d:
-            # Check if the first column value is already in the unique set
-            if row[0] not in unique_set:
-               # If not, add it to the unique set and append the row to the filtered list
-               unique_set.add(row[0])
-               filtered_rows.append(row)
+         # # Iterate over each row in the 2D array
+         # for row in rows_2d:
+         #    # Check if the first column value is already in the unique set
+         #    if row[0] not in unique_set:
+         #       # If not, add it to the unique set and append the row to the filtered list
+         #       unique_set.add(row[0])
+         #       filtered_rows.append(row)
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
@@ -84,11 +84,32 @@ class MyHandler( BaseHTTPRequestHandler ):
          #    lines.insert(tbody_line_number, new_row)
          #    html_string = '\n'.join(lines)
 
+         # find the start and end indices of the <tbody> tag
+         tbody_start = html_string.find('<tbody>')
+         tbody_end = html_string.find('</tbody>')
+
+         # extract the table rows from the HTML string using regex
+         pattern = re.compile(r'<tr>(.*?)</tr>', re.DOTALL)
+         rows = pattern.findall(html_string[tbody_start:tbody_end])
+
+         # loop through the rows and extract the first column value
+         col1_values = []
+         for row in rows:
+            # extract the column values using regex
+            col_pattern = re.compile(r'<td>(.*?)</td>')
+            columns = col_pattern.findall(row)
+            
+            # add the first column value to the list
+            col1_values.append(columns[0])
+
+         # print the list of first column values
+         print(col1_values)
+
          # Define a regex pattern to match the closing </tbody> tag
          pattern = re.compile(r'</tbody>')
 
          # Iterate over each row in the 2D array and append it to the HTML string
-         for row in filtered_rows:
+         for row in rows_2d:
             # Build the HTML string for the current row
             row_html = '<tr>'
             for cell in row:
