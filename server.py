@@ -64,11 +64,11 @@ class MyHandler( BaseHTTPRequestHandler ):
                break
 
          # Append a new row right before the </tbody> tag
-         if tbody_line_number is not None:
-            new_row = '<tr><td>1</td><td>Meth</td></tr>'
-            lines = html_string.splitlines()
-            lines.insert(tbody_line_number, new_row)
-            html_string = '\n'.join(lines)
+         # if tbody_line_number is not None:
+         #    new_row = '<tr><td>1</td><td>Meth</td></tr>'
+         #    lines = html_string.splitlines()
+         #    lines.insert(tbody_line_number, new_row)
+         #    html_string = '\n'.join(lines)
 
          # Define a regex pattern to match the closing </tbody> tag
          pattern = re.compile(r'</tbody>')
