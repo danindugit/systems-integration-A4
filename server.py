@@ -314,7 +314,11 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # create the db
          db = molsql.Database(reset=False);
+         print("Before:");
+         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
          db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE='{codeValue}';""");
+         print("After:");
+         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
 
          self.send_response( 200 ); # OK
          self.end_headers();
