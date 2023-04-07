@@ -48,6 +48,8 @@ $(document).ready(
             processData: false,
             success: function(svgstr) {
                // Handle success here
+               console.log(svgstr);
+               console.log("at least it succeeds eh.");
                $('#svgMol').html(function(){
                   return svgstr;
                });
