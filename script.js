@@ -101,6 +101,31 @@ $(document).ready(
             }
           });
       });
+
+      // click handler for the btnRemoveElement button
+      $('#btnRemoveElement').click(function() {
+         const elementCode = $('#formElementCode').val();
+
+         const form = new FormData();
+
+         form.append("code", elementCode);
+
+         $.ajax({
+            url: 'removeElement',
+            type: 'POST',
+            data: form,
+            contentType: false,
+            processData: false,
+            success: function() {
+               // Handle success here
+               alert('Successfully removed.')
+            },
+            error: function() {
+               // Handle error here
+               alert("Error. Please Enter a valid element code.");
+            }
+          });
+      });
        
   }
 );
