@@ -126,7 +126,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          rows_2d = [[str(cell) for cell in row] for row in rows];
 
          # save file to a string
-         with open('removeElement.html', 'r') as f:
+         with open('emptyRemoveElement.html', 'r') as f:
             html_string = f.read();
 
          # find the start and end indices of the <tbody> tag
