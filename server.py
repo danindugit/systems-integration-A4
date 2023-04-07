@@ -228,6 +228,10 @@ class MyHandler( BaseHTTPRequestHandler ):
          db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
 
          print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
+      
+         self.send_response( 200 ); # OK
+         self.end_headers();
+
 
       elif self.path == "/form_handler.html":
 
