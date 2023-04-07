@@ -115,6 +115,11 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # Convert the list of tuples to a 2D array of strings
          rows_2d = [[str(cell) for cell in row] for row in rows];
+
+         # add number of atoms and number of bonds
+         for row in rows_2d:
+            row.append(db.load_mol(row[1]).atom_no)
+            row.append(db.load_mol(row[1]).bond_no)
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
@@ -199,7 +204,7 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_POST(self):
 
       if self.path == "/uploadSDF":
-         print("makes it to uploadSDF.");
+         # print("makes it to uploadSDF.");
          # code to handle uploadSDF
 
          # content_length = int(self.headers['Content-Length']);
@@ -245,7 +250,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          db.add_molecule( formMolNameValue, fptr );
 
          # print("ok2.");
-         print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
+         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
 
          # message = "sdf file uploaded to database";
 
