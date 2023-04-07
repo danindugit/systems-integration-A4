@@ -31,6 +31,12 @@ with open('emptySelectMolecule.html', 'r') as f:
 with open('selectMolecule.html', 'w') as f:
    f.write(reset_html);
 
+# reset removeElement table
+with open('emptyRemoveElement.html', 'r') as f:
+   reset_html = f.read();
+with open('removeElement.html', 'w') as f:
+   f.write(reset_html);
+
 class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
 
@@ -64,7 +70,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          pattern = re.compile(r'<tr>(.*?)</tr>', re.DOTALL)
          rows = pattern.findall(html_string[tbody_start:tbody_end])
 
-         # loop through the rows and extract the first column value
+         # loop through the rows and extract the first column value (mol id)
          col1_values = []
          for row in rows:
             # extract the column values using regex
@@ -102,6 +108,68 @@ class MyHandler( BaseHTTPRequestHandler ):
       
          self.write_file( "selectMolecule.html" );
 
+      elif self.path == "/removeElement.html":
+         self.send_response(200);
+         self.send_header( "Content-type", "text/html" );
+
+         # open database
+         db = molsql.Database(reset=False);
+
+         # Execute an SQL query to select all rows from the Elements table
+         rows = db.conn.execute('SELECT * FROM Elements').fetchall();
+
+         # Convert the list of tuples to a 2D array of strings
+         rows_2d = [[str(cell) for cell in row] for row in rows];
+
+         # save file to a string
+         with open('removeElement.html', 'r') as f:
+            html_string = f.read();
+
+         # find the start and end indices of the <tbody> tag
+         tbody_start = html_string.find('<tbody>')
+         tbody_end = html_string.find('</tbody>')
+
+         # extract the table rows from the HTML string using regex
+         pattern = re.compile(r'<tr>(.*?)</tr>', re.DOTALL)
+         rows = pattern.findall(html_string[tbody_start:tbody_end])
+
+         # loop through the rows and extract the second column value (element code)
+         col1_values = []
+         for row in rows:
+            # extract the column values using regex
+            col_pattern = re.compile(r'<td>(.*?)</td>')
+            columns = col_pattern.findall(row)
+            
+            # add the second column value to the list
+            col1_values.append(columns[1])
+
+         # Define a regex pattern to match the closing </tbody> tag
+         pattern = re.compile(r'</tbody>')
+
+         # Iterate over each row in the 2D array and append it to the HTML string
+         for row in rows_2d:
+            # skip if row already exists
+            if row[1] in col1_values:
+               continue;
+            
+            # Build the HTML string for the current row
+            row_html = '<tr>'
+            for cell in row:
+               row_html += f'<td>{cell}</td>'
+            row_html += '</tr>\n'
+            
+            # Find the position of the </tbody> tag in the HTML string
+            match = pattern.search(html_string)
+            if match:
+               pos = match.start()
+               
+               # Insert the current row HTML before the </tbody> tag
+               html_string = html_string[:pos] + row_html + html_string[pos:]
+
+         with open('removeElement.html', 'w') as f:
+            f.write(html_string)
+      
+         self.write_file( "removeElement.html" );
 
       elif self.path == "/" or self.path.endswith(".html"):   # make sure it's a valid file
          self.send_response( 200 );  # OK
@@ -227,7 +295,7 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
 
-         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
+         # print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
       
          self.send_response( 200 ); # OK
          self.end_headers();
