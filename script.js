@@ -73,6 +73,7 @@ $(document).ready(
          const colour2 = $('#element-colour2').val();
          const colour3 = $('#element-colour3').val();
          const radius = $('#element-radius').val();
+         alert(colour1);
 
          const form = new FormData();
 
