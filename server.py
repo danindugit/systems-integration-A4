@@ -206,10 +206,9 @@ class MyHandler( BaseHTTPRequestHandler ):
          # print(svg);
 
          self.send_response( 200 ); # OK
-         self.send_header( "Content-type", "text/plain" );
-         self.send_header( "Content-length", len(svg) );
+         self.send_header( "Content-type", "image/svg+xml" );
          self.end_headers();
-         self.wfile.write(svg);
+         self.wfile.write(svg.encode());
 
       elif self.path == "/form_handler.html":
 
