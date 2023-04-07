@@ -45,7 +45,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          self.send_header( "Content-type", "text/html" );
 
          # open database
-         db = molsql.Database(reset=False);
+         # db = molsql.Database(reset=False);
 
          # Execute an SQL query to select all rows from the Molecules table
          rows = db.conn.execute('SELECT * FROM Molecules').fetchall();
@@ -113,7 +113,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          self.send_header( "Content-type", "text/html" );
 
          # open database
-         db = molsql.Database(reset=False);
+         # db = molsql.Database(reset=False);
 
          print("\n\nGET:");
          print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
@@ -298,7 +298,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          radiusValue = form.getvalue("radius");
 
          # create the db
-         db = molsql.Database(reset=False);
+         # db = molsql.Database(reset=False);
 
          db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
 
@@ -317,7 +317,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          codeValue = form.getvalue("code");
 
          # create the db
-         db = molsql.Database(reset=False);
+         # db = molsql.Database(reset=False);
          print("Before:");
          print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
          db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE='{codeValue}';""");
