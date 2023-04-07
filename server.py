@@ -115,6 +115,10 @@ class MyHandler( BaseHTTPRequestHandler ):
          # open database
          db = molsql.Database(reset=False);
 
+         print("\n\nGET:");
+         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
+         print("\n\n");
+
          # Execute an SQL query to select all rows from the Elements table
          rows = db.conn.execute('SELECT * FROM Elements').fetchall();
 

@@ -119,19 +119,7 @@ $(document).ready(
             success: function() {
                // Handle success here
                alert('Successfully removed.')
-               $.ajax({
-                  url: 'removeElement.html',
-                  type: 'GET',
-                  data: {},
-                  contentType: false,
-                  processData: false,
-                  success: function() {
-                     // Handle success here
-                  },
-                  error: function() {
-                     // Handle error here
-                  }
-                });
+               location.href = 'http://localhost:53791/removeElement.html'
             },
             error: function() {
                // Handle error here
