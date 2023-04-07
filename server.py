@@ -80,6 +80,8 @@ with open('selectMolecule.html', 'w') as f:
                     <tr>
                       <th scope="col">Molecule_ID</th>
                       <th scope="col">Molecule Name</th>
+                      <th scope="col">Number of Atoms</th>
+                      <th scope="col">Number of Bonds</th>
                     </tr>
                   </thead>
                   <tbody>
