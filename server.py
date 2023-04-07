@@ -26,7 +26,7 @@ MolDisplay.header += db.radial_gradients();
 # default element
 db.radius().setdefault('-', 10)
 db.element_name().setdefault('-', 'default')
-db['Elements'] = ( -1, '-', 'default', '000000', '000000', '000000',10)
+db['Elements'] = ( -1, '-', 'default', 'adfff8', 'adfff8', 'adfff8', 10)
 
 # reset selectMolecule table
 with open('emptySelectMolecule.html', 'r') as f:
@@ -264,10 +264,13 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          codeValue = form.getvalue("code");
 
-         db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE='{codeValue}';""");
-
-         self.send_response( 200 ); # OK
-         self.end_headers();
+         if codeValue == '-':
+            self.send_response( 404 );
+            self.end_headers();
+         else:
+            db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE='{codeValue}';""");
+            self.send_response( 200 ); # OK
+            self.end_headers();
 
       else:
          self.send_response( 404 );
