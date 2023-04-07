@@ -100,10 +100,6 @@ with open('selectMolecule.html', 'w') as f:
         </body>
       </html>""")
 
-# list of files that we allow the web-server to serve to clients
-# (we don't want to serve any file that the client requests)
-# public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html', '/removeElement.html', '/uploadSDF.html', '/selectMolecule.html'];
-
 class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
 
@@ -119,52 +115,10 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # Convert the list of tuples to a 2D array of strings
          rows_2d = [[str(cell) for cell in row] for row in rows];
-
-         # Create an empty set to store the unique values
-         unique_set = set()
-
-         # Create an empty list to store the filtered rows
-         # filtered_rows = []
-
-         # # Iterate over each row in the 2D array
-         # for row in rows_2d:
-         #    # Check if the first column value is already in the unique set
-         #    if row[0] not in unique_set:
-         #       # If not, add it to the unique set and append the row to the filtered list
-         #       unique_set.add(row[0])
-         #       filtered_rows.append(row)
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
             html_string = f.read();
-         
-         # # Find the line number of the <tbody> tag
-         # tbody_line_number = None;
-         # for i, line in enumerate(html_string.splitlines()):
-         #    if '<tbody>' in line:
-         #       tbody_line_number = i;
-         #       break;
-
-         # # Append a new row right after the <tbody> tag
-         # if tbody_line_number is not None:
-         #    new_row = '';
-         #    lines = html_string.splitlines();
-         #    lines.insert(tbody_line_number+1, new_row);
-         #    html_string = '\n'.join(lines);
-
-         # Find the line number of the </tbody> tag
-         tbody_line_number = None
-         for i, line in enumerate(html_string.splitlines()):
-            if '</tbody>' in line:
-               tbody_line_number = i
-               break
-
-         # Append a new row right before the </tbody> tag
-         # if tbody_line_number is not None:
-         #    new_row = '<tr><td>1</td><td>Meth</td></tr>'
-         #    lines = html_string.splitlines()
-         #    lines.insert(tbody_line_number, new_row)
-         #    html_string = '\n'.join(lines)
 
          # find the start and end indices of the <tbody> tag
          tbody_start = html_string.find('<tbody>')
@@ -183,9 +137,6 @@ class MyHandler( BaseHTTPRequestHandler ):
             
             # add the first column value to the list
             col1_values.append(columns[0])
-
-         # print the list of first column values
-         print(col1_values)
 
          # Define a regex pattern to match the closing </tbody> tag
          pattern = re.compile(r'</tbody>')
@@ -209,9 +160,6 @@ class MyHandler( BaseHTTPRequestHandler ):
                
                # Insert the current row HTML before the </tbody> tag
                html_string = html_string[:pos] + row_html + html_string[pos:]
-               
-         # Print the updated HTML string
-         # print(html_string)
 
          with open('selectMolecule.html', 'w') as f:
             f.write(html_string)
