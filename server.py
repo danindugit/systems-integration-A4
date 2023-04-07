@@ -18,6 +18,88 @@ db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
 db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
 db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
 
+# reset selectMolecule table
+with open('selectMolecule.html', 'w') as f:
+   f.write("""<!--  Name: Danindu Marasinghe
+      Course: CIS*2750
+      Due Date: 2023-04-04 -->
+
+      <!doctype html>
+      <html lang="en">
+        <head>
+          <!-- JQuery -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"> </script>
+
+          <!-- Local javascript -->
+          <script src="script.js" /></script>
+      
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      
+          <!-- Local stylesheet -->
+          <link rel="stylesheet" type="text/css" href="style.css" />
+        </head>
+        </head>
+        <body>
+         <!-- navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="./index.html">Molecule Viewer</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link" href="./index.html">Home </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="./addElement.html">Add Element</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="./removeElement.html">Remove Element</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="./uploadSDF.html">Upload sdf <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                     <a class="nav-link" href="./selectMolecule.html">Select Molecule <span class="sr-only">(current)</span></a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         
+         <!-- Title -->
+         <h1 class="display-2 text-center title">Select a Molecule</h1>   
+         <br>  
+         <div class="row content-row">
+            <div class="text-center col-md-6">
+               <h3>List of Molecules:</h3>
+               <br>
+               <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Molecule_ID</th>
+                      <th scope="col">Molecule Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 info-col">
+               <p>Please enter the name of the molecule you'd like to display.</p>
+               <input class="form-control" type="text" placeholder="Molecule Name">
+               <button type="button" class="btn btn-primary btn-display">Display Molecule</button>
+            </div>
+         </div>   
+      
+         <!-- Bootstrap JavaScript -->
+         <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </body>
+      </html>""")
+
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
 # public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html', '/removeElement.html', '/uploadSDF.html', '/selectMolecule.html'];
