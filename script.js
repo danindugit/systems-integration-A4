@@ -10,7 +10,7 @@ $(document).ready(
          const fileName = $('#fileSdf')[0].files[0]
          const molName= $('#formMolName').val()
 
-         const form = new FormData()
+         const form = new FormData();
 
          form.append("fileInfo", fileName)
          form.append("mol", molName)
@@ -31,6 +31,30 @@ $(document).ready(
             }
           });
        });
+
+      // click handler for the display molecule button
+      $('#btnDisplay').click(function() {
+         const molName = $('#displayMolName').val();
+
+         const form = new FormData();
+
+         form.append("mol", molName);
+
+         $.ajax({
+            url: 'display',
+            type: 'POST',
+            data: form,
+            contentType: false,
+            processData: false,
+            success: function() {
+              // Handle success here
+            },
+            error: function() {
+              // Handle error here
+              alert("Error. Please Enter a valid molecule name.");
+            }
+          });
+      });
        
   }
 );
