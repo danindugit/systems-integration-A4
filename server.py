@@ -110,6 +110,10 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # Iterate over each row in the 2D array and append it to the HTML string
          for row in rows_2d:
+            # skip if row already exists
+            if row[0] in col1_values:
+               continue;
+            
             # Build the HTML string for the current row
             row_html = '<tr>'
             for cell in row:
@@ -125,7 +129,7 @@ class MyHandler( BaseHTTPRequestHandler ):
                html_string = html_string[:pos] + row_html + html_string[pos:]
                
          # Print the updated HTML string
-         print(html_string)
+         # print(html_string)
 
          with open('selectMolecule.html', 'w') as f:
             f.write(html_string)
