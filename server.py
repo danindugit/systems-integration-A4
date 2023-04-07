@@ -8,6 +8,7 @@ import sqlite3;
 
 import cgi;
 import io;
+import re;
 
 # create database
 db = molsql.Database(reset=True);
@@ -37,8 +38,27 @@ class MyHandler( BaseHTTPRequestHandler ):
          # Convert the list of tuples to a 2D array of strings
          rows_2d = [[str(cell) for cell in row] for row in rows];
 
-         # Print the 2D array of strings
-         print(rows_2d);
+         # Define a regex pattern to match the closing </tbody> tag
+         pattern = re.compile(r'</tbody>')
+
+         # Iterate over each row in the 2D array and append it to the HTML string
+         for row in rows_2d:
+            # Build the HTML string for the current row
+            row_html = '<tr>'
+            for cell in row:
+               row_html += f'<td>{cell}</td>'
+            row_html += '</tr>\n'
+            
+            # Find the position of the </tbody> tag in the HTML string
+            match = pattern.search(html_string)
+            if match:
+               pos = match.start()
+               
+               # Insert the current row HTML before the </tbody> tag
+               html_string = html_string[:pos] + row_html + html_string[pos:]
+               
+         # Print the updated HTML string
+         print(html_string)
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
