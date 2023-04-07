@@ -46,12 +46,15 @@ $(document).ready(
             data: form,
             contentType: false,
             processData: false,
-            success: function() {
-              // Handle success here
+            success: function(svgstr) {
+               // Handle success here
+               $('#svgMol').html(function(){
+                  return svgstr;
+               });
             },
             error: function() {
-              // Handle error here
-              alert("Error. Please Enter a valid molecule name.");
+               // Handle error here
+               alert("Error. Please Enter a valid molecule name.");
             }
           });
       });

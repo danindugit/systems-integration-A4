@@ -21,7 +21,6 @@ db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
 # reset selectMolecule table
 with open('emptySelectMolecule.html', 'r') as f:
    reset_html = f.read();
-
 with open('selectMolecule.html', 'w') as f:
    f.write(reset_html);
 
@@ -194,6 +193,13 @@ class MyHandler( BaseHTTPRequestHandler ):
             );
       
          molNameValue = form['mol'];
+         mol = db.load_mol(molNameValue);
+         svg = mol.svg();
+
+         self.send_response( 200 ); # OK
+         self.send_header( "Content-type", "text/plain" );
+         self.send_header( "Content-length", len(svg) );
+         self.end_headers();
 
       elif self.path == "/form_handler.html":
 
