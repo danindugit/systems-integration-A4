@@ -4,13 +4,22 @@ import sys;     # to get command line argument for port
 import urllib;  # code to parse for data
 
 import molsql;
+import sqlite3;
 
 import cgi;
 import io;
 
+# create database
+db = molsql.Database(reset=True);
+db.create_tables();
+db['Elements'] = ( 1, 'H', 'Hydrogen', 'FFFFFF', '050505', '020202', 25 );
+db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
+db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
+db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
+
 # list of files that we allow the web-server to serve to clients
 # (we don't want to serve any file that the client requests)
-public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html', '/removeElement.html', '/uploadSDF.html', '/selectMolecule.html'];
+# public_files = [ '/index.html', '/style.css', '/script.js' , '/addElement.html', '/removeElement.html', '/uploadSDF.html', '/selectMolecule.html'];
 
 class MyHandler( BaseHTTPRequestHandler ):
    def do_GET(self):
@@ -18,6 +27,9 @@ class MyHandler( BaseHTTPRequestHandler ):
       if self.path == "/selectMolecule.html":
          self.send_response(200);
          self.send_header( "Content-type", "text/html" );
+
+         # open database
+         db = molsql.Database(reset=False);
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
@@ -189,14 +201,6 @@ class MyHandler( BaseHTTPRequestHandler ):
 
       # send the contents
       self.wfile.write( bytes( page, "utf-8" ) );
-
-
-db = molsql.Database(reset=True);
-db.create_tables();
-db['Elements'] = ( 1, 'H', 'Hydrogen', 'FFFFFF', '050505', '020202', 25 );
-db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
-db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
-db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
 
 httpd = HTTPServer( ( 'localhost', int(sys.argv[1]) ), MyHandler );
 
