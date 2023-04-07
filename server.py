@@ -210,6 +210,25 @@ class MyHandler( BaseHTTPRequestHandler ):
          self.end_headers();
          self.wfile.write(svg.encode());
 
+      elif self.path == "/addElement":
+         form = cgi.FieldStorage(
+                fp=self.rfile,
+                headers=self.headers,
+                environ={'REQUEST_METHOD': 'POST'}
+            );
+
+         numberValue = form.getvalue("number");
+         codeValue = form.getvalue("code");
+         nameValue = form.getvalue("name");
+         colour1Value = form.getvalue("colour1");
+         colour2Value = form.getvalue("colour2");
+         colour3Value = form.getvalue("colour3");
+         radiusValue = form.getvalue("radius");
+
+         db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
+
+         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
+
       elif self.path == "/form_handler.html":
 
          # this is specific to 'multipart/form-data' encoding used by POST

@@ -51,8 +51,8 @@ $(document).ready(
                const serializer = new XMLSerializer();
                const svgStr = serializer.serializeToString(svgData);
 
-               console.log(svgStr);
-               console.log("at least it succeeds eh.");
+               // console.log(svgStr);
+               // console.log("at least it succeeds eh.");
                $('div.svg').html(function() {
                   return svgStr;
                });
@@ -60,6 +60,45 @@ $(document).ready(
             error: function() {
                // Handle error here
                alert("Error. Please Enter a valid molecule name.");
+            }
+          });
+      });
+
+      // click handler for the add element button
+      $('#btnAddElement').click(function() {
+         const number = $('#element-number').val();
+         const code = $('#element-code').val();
+         const name = $('#element-name').val();
+         const colour1 = $('#element-colour-1').val();
+         const colour2 = $('#element-colour-2').val();
+         const colour3 = $('#element-colour-3').val();
+         const radius = $('#element-radius').val();
+
+
+         const form = new FormData();
+
+         form.append("number", number);
+         form.append("code", code);
+         form.append("name", name);
+         form.append("colour1", colour1);
+         form.append("colour2", colour2);
+         form.append("colour3", colour3);
+         form.append("radius", radius);
+
+
+         $.ajax({
+            url: 'addElement',
+            type: 'POST',
+            data: form,
+            contentType: false,
+            processData: false,
+            success: function() {
+               // Handle success here
+               alert('Success');
+            },
+            error: function() {
+               // Handle error here
+               alert("Error. Please enter valid element data.");
             }
           });
       });
