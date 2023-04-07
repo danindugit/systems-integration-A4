@@ -37,6 +37,20 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # Convert the list of tuples to a 2D array of strings
          rows_2d = [[str(cell) for cell in row] for row in rows];
+
+         # Create an empty set to store the unique values
+         unique_set = set()
+
+         # Create an empty list to store the filtered rows
+         filtered_rows = []
+
+         # Iterate over each row in the 2D array
+         for row in rows_2d:
+            # Check if the first column value is already in the unique set
+            if row[0] not in unique_set:
+               # If not, add it to the unique set and append the row to the filtered list
+               unique_set.add(row[0])
+               filtered_rows.append(row)
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
@@ -74,7 +88,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          pattern = re.compile(r'</tbody>')
 
          # Iterate over each row in the 2D array and append it to the HTML string
-         for row in rows_2d:
+         for row in filtered_rows:
             # Build the HTML string for the current row
             row_html = '<tr>'
             for cell in row:
