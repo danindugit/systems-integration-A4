@@ -30,6 +30,15 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # open database
          db = molsql.Database(reset=False);
+
+         # Execute an SQL query to select all rows from the Molecules table
+         rows = db.conn.execute('SELECT * FROM Molecules').fetchall();
+
+         # Convert the list of tuples to a 2D array of strings
+         rows_2d = [[str(cell) for cell in row] for row in rows];
+
+         # Print the 2D array of strings
+         print(rows_2d);
       
          # save file to a string
          with open('selectMolecule.html', 'r') as f:
