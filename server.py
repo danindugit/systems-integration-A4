@@ -1,10 +1,8 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler;
 
 import sys;     # to get command line argument for port
-import urllib;  # code to parse for data
 
 import molsql;
-import sqlite3;
 
 import cgi;
 import io;
@@ -25,6 +23,11 @@ MolDisplay.radius = db.radius();
 MolDisplay.element_name = db.element_name();
 MolDisplay.header += db.radial_gradients();
 
+# default element
+db.radius().setdefault('-', 10)
+db.element_name().setdefault('-', 'default')
+db['Elements'] = ( -1, '-', 'default', '000000', '000000', '000000',10)
+
 # reset selectMolecule table
 with open('emptySelectMolecule.html', 'r') as f:
    reset_html = f.read();
@@ -43,9 +46,6 @@ class MyHandler( BaseHTTPRequestHandler ):
       if self.path == "/selectMolecule.html":
          self.send_response(200);
          self.send_header( "Content-type", "text/html" );
-
-         # open database
-         # db = molsql.Database(reset=False);
 
          # Execute an SQL query to select all rows from the Molecules table
          rows = db.conn.execute('SELECT * FROM Molecules').fetchall();
@@ -111,13 +111,6 @@ class MyHandler( BaseHTTPRequestHandler ):
       elif self.path == "/removeElement.html":
          self.send_response(200);
          self.send_header( "Content-type", "text/html" );
-
-         # open database
-         # db = molsql.Database(reset=False);
-
-         print("\n\nGET:");
-         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
-         print("\n\n");
 
          # Execute an SQL query to select all rows from the Elements table
          rows = db.conn.execute('SELECT * FROM Elements').fetchall();
@@ -207,29 +200,6 @@ class MyHandler( BaseHTTPRequestHandler ):
    def do_POST(self):
 
       if self.path == "/uploadSDF":
-         # print("makes it to uploadSDF.");
-         # code to handle uploadSDF
-
-         # content_length = int(self.headers['Content-Length']);
-         # body = self.rfile.read(content_length);
-
-         # print( repr( body.decode('utf-8') ) );
-
-         # # convert POST content into a dictionary
-         # postvars = urllib.parse.parse_qs( body.decode( 'utf-8' ) );
-
-         # print( postvars );
-
-
-         # print("ok1.");
-         # db = molsql.Database(reset=False);
-         # content_length = int(self.headers.get('Content-Length'));
-         # print("ok1.2");
-         # post_data = self.rfile.read(content_length);
-         # print("ok1.3");
-         # form_data = json.loads(post_data.decode('utf-8'));
-         # print("ok1.4");
-
          form = cgi.FieldStorage(
                 fp=self.rfile,
                 headers=self.headers,
@@ -238,31 +208,16 @@ class MyHandler( BaseHTTPRequestHandler ):
          fileInputValue = form['fileInfo'];
          formMolNameValue = form.getvalue("mol");
 
-         # print(fileInputValue.filename);
-         # print(fileInputValue);
-         # print(formMolNameValue);
-
          fptr = fileInputValue.file.read();
 
          # convert to text file
          bytesIO = io.BytesIO(fptr);
          fptr = io.TextIOWrapper(bytesIO);
 
-         # fp = os.fopen(fileInputValue.filename);
-
          db.add_molecule( formMolNameValue, fptr );
 
-         # print("ok2.");
-         # print( db.conn.execute( "SELECT * FROM Molecules;" ).fetchall());
-
-         # message = "sdf file uploaded to database";
-
          self.send_response( 200 ); # OK
-         # self.send_header( "Content-type", "text/plain" );
-         # self.send_header( "Content-length", len(message) );
          self.end_headers();
-
-         # self.wfile.write( bytes( message, "utf-8" ) );
 
       elif self.path == "/display":
          form = cgi.FieldStorage(
@@ -274,8 +229,6 @@ class MyHandler( BaseHTTPRequestHandler ):
          molNameValue = form.getvalue("mol");
          mol = db.load_mol(molNameValue);
          svg = mol.svg();
-
-         # print(svg);
 
          self.send_response( 200 ); # OK
          self.send_header( "Content-type", "image/svg+xml" );
@@ -297,12 +250,7 @@ class MyHandler( BaseHTTPRequestHandler ):
          colour3Value = form.getvalue("colour3");
          radiusValue = form.getvalue("radius");
 
-         # create the db
-         # db = molsql.Database(reset=False);
-
          db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
-
-         # print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
       
          self.send_response( 200 ); # OK
          self.end_headers();
@@ -316,13 +264,7 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          codeValue = form.getvalue("code");
 
-         # create the db
-         # db = molsql.Database(reset=False);
-         print("Before:");
-         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
          db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE='{codeValue}';""");
-         print("After:");
-         print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
 
          self.send_response( 200 ); # OK
          self.end_headers();

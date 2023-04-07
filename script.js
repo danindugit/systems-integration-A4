@@ -105,7 +105,6 @@ $(document).ready(
       // click handler for the btnRemoveElement button
       $('#btnRemoveElement').click(function() {
          const elementCode = $('#formElementCode').val();
-         alert(elementCode)
          const form = new FormData();
 
          form.append("code", elementCode);
