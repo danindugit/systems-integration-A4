@@ -18,15 +18,13 @@ db.create_tables();
 # db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
 # db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
 
+# default element
+db['Elements'] = ( -1, '-', 'default', 'adfff8', 'adfff8', 'adfff8', 10)
+
 # initialize MolDisplay
 MolDisplay.radius = db.radius();
 MolDisplay.element_name = db.element_name();
 MolDisplay.header += db.radial_gradients();
-
-# default element
-db.radius().setdefault('-', 10)
-db.element_name().setdefault('-', 'default')
-db['Elements'] = ( -1, '-', 'default', 'adfff8', 'adfff8', 'adfff8', 10)
 
 # reset selectMolecule table
 with open('emptySelectMolecule.html', 'r') as f:
