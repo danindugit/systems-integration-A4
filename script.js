@@ -46,11 +46,16 @@ $(document).ready(
             data: form,
             contentType: false,
             processData: false,
-            success: function(svgstr) {
+            success: function(svgData) {
                // Handle success here
-               console.log(svgstr);
+               const serializer = new XMLSerializer();
+               const svgStr = serializer.serializeToString(svgData);
+
+               console.log(svgStr);
                console.log("at least it succeeds eh.");
-               $('div.svg').append(svgstr);
+               $('div.svg').html(function() {
+                  return svgStr;
+               });
             },
             error: function() {
                // Handle error here
