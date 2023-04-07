@@ -192,7 +192,7 @@ class MyHandler( BaseHTTPRequestHandler ):
                 environ={'REQUEST_METHOD': 'POST'}
             );
       
-         molNameValue = form['mol'];
+         molNameValue = form.getvalue("mol");
          mol = db.load_mol(molNameValue);
          svg = mol.svg();
 
