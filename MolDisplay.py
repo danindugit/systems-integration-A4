@@ -26,7 +26,7 @@ class Atom:
 
     # create an svg element for an atom
     def svg(self):
-        return '  <circle cx="%.2f" cy="%.2f" r="%d" fill="url(#%s)"/>\n' % (self.c_atom.x * 100.0 + offsetx, self.c_atom.y * 100.0 + offsety, radius.get(self.c_atom.element, 10), element_name[self.c_atom.element]);
+        return '  <circle cx="%.2f" cy="%.2f" r="%d" fill="url(#%s)"/>\n' % (self.c_atom.x * 100.0 + offsetx, self.c_atom.y * 100.0 + offsety, radius.get(self.c_atom.element, 10), element_name.get(self.c_atom.element, "-"));
 
 class Bond:
     def __init__(self, c_bond):
