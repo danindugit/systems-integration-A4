@@ -94,7 +94,6 @@ $(document).ready(
             success: function() {
                // Handle success here
                alert('Success');
-               location.href = 'http://localhost:53791/removeElement.html'
             },
             error: function() {
                // Handle error here
@@ -120,6 +119,7 @@ $(document).ready(
             success: function() {
                // Handle success here
                alert('Successfully removed.')
+               location.href = 'http://localhost:53791/removeElement.html'
             },
             error: function() {
                // Handle error here
