@@ -55,9 +55,6 @@ $(document).ready(
             error: function() {
                // Handle error here
                alert("Error. Please Enter a valid molecule name.");
-               $('#svgMol').html(function(){
-                  return svgstr;
-               });
             }
           });
       });

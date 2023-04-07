@@ -203,6 +203,8 @@ class MyHandler( BaseHTTPRequestHandler ):
          mol = db.load_mol(molNameValue);
          svg = mol.svg();
 
+         print(svg);
+
          self.send_response( 200 ); # OK
          self.send_header( "Content-type", "text/plain" );
          self.send_header( "Content-length", len(svg) );
