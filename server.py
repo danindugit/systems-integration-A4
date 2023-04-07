@@ -293,6 +293,9 @@ class MyHandler( BaseHTTPRequestHandler ):
          colour3Value = form.getvalue("colour3");
          radiusValue = form.getvalue("radius");
 
+         # create the db
+         db = molsql.Database(reset=False);
+
          db['Elements'] = ( numberValue, codeValue, nameValue, colour1Value, colour2Value, colour3Value, radiusValue );
 
          # print( db.conn.execute( "SELECT * FROM Elements;" ).fetchall());
