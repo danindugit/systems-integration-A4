@@ -10,6 +10,8 @@ import cgi;
 import io;
 import re;
 
+import MolDisplay;
+
 # create database
 db = molsql.Database(reset=True);
 db.create_tables();
@@ -17,6 +19,11 @@ db['Elements'] = ( 1, 'H', 'Hydrogen', 'FFFFFF', '050505', '020202', 25 );
 db['Elements'] = ( 6, 'C', 'Carbon', '808080', '010101', '000000', 40 );
 db['Elements'] = ( 7, 'N', 'Nitrogen', '0000FF', '000005', '000002', 40 );
 db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
+
+# initialize MolDisplay
+MolDisplay.radius = db.radius();
+MolDisplay.element_name = db.element_name();
+MolDisplay.header += db.radial_gradients();
 
 # reset selectMolecule table
 with open('emptySelectMolecule.html', 'r') as f:

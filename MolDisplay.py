@@ -10,6 +10,9 @@ header = """<svg version="1.1" width="1000" height="1000"
 
 footer = """</svg>""";
 
+radius = {};
+element_name = {};
+
 offsetx = 500;
 offsety = 500;
 
