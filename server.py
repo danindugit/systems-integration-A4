@@ -19,7 +19,7 @@ db.create_tables();
 # db['Elements'] = ( 8, 'O', 'Oxygen', 'FF0000', '050000','020000',40);
 
 # default element
-db['Elements'] = ( -1, '-', 'default', 'adfff8', 'adfff8', 'adfff8', 50)
+db['Elements'] = ( -1, '-', 'default', 'adfff8', 'adfff8', 'adfff8', 35)
 
 # initialize MolDisplay
 MolDisplay.radius = db.radius();
