@@ -69,11 +69,10 @@ $(document).ready(
          const number = $('#element-number').val();
          const code = $('#element-code').val();
          const name = $('#element-name').val();
-         const colour1 = $('#element-colour-1').val();
-         const colour2 = $('#element-colour-2').val();
-         const colour3 = $('#element-colour-3').val();
+         const colour1 = $('#element-colour1').val();
+         const colour2 = $('#element-colour2').val();
+         const colour3 = $('#element-colour3').val();
          const radius = $('#element-radius').val();
-
 
          const form = new FormData();
 
