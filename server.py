@@ -314,7 +314,7 @@ class MyHandler( BaseHTTPRequestHandler ):
 
          # create the db
          db = molsql.Database(reset=False);
-         db.conn.execute("DELETE FROM Elements WHERE ELEMENT_CODE=?", (codeValue,));
+         db.conn.execute(f"""DELETE FROM Elements WHERE ELEMENT_CODE={codeValue};""");
 
          self.send_response( 200 ); # OK
          self.end_headers();
