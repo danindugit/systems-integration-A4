@@ -3,3 +3,4 @@ molecule.py
 molecule_wrap.c
 *.db
 .DS_Store
+venv/
